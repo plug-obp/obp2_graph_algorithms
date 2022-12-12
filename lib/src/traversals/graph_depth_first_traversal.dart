@@ -19,6 +19,16 @@ bool emptyOnExit<V, A, M>(
   return false;
 }
 
+M graphPreorderDepthFirstTraversal<V, M>(
+  Iterable<V> Function() initial,
+  Iterable<V> Function(V) next,
+  bool Function(V? source, V vertex, M memory) onEntry,
+  M memory,
+) {
+  return graphDepthFirstTraversal(
+      initial, next, onEntry, (s, v, m) => false, (v, m) => false, memory);
+}
+
 M graphDepthFirstTraversal<V, M>(
   Iterable<V> Function() initial,
   Iterable<V> Function(V) next,
